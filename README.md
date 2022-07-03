@@ -58,6 +58,7 @@ The build will create the following containers :
 The producer script in Kafka will do the job of data collector / Gateways  and will read / collect data from the sub-dataset [test.csv] that contains 10 lines of different patient measurements without the label (0/1). Kafka producer will read the file line by line to simulate the gateway and send to the consumer with a sleep of 5 seconds.
 The subset is obtained from the original [dataset](https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset) which we used to develop our machine learning model to classify the patients.
 Here we have a view of our data:
+
 ### data dictionary
 #### age - age in years
 #### sex - (1 = male; 0 = female)
@@ -118,11 +119,11 @@ Vital signs are measurements of the body's most basic functions and are routinel
 Angina is chest pain caused by reduced blood flow to the heart muscles. It's not usually life threatening, but it's a warning sign that you could be at risk of a heart attack or stroke. 
 Classification based on XGBoost ML classifier model: 0 :normal patient / 1 : Cardio patient
 
-Run the produce:
+#### Running the Kafka producer
 ```
 python3 Gateway.py
 ```
-#### Running the Kafka producer
+
 ![](https://github.com/nadinelabidi/Kafka-Mongo/blob/main/Kafka_file/producer2.py)
 ![](https://github.com/nadinelabidi/Ehealth-Kafka-Project/blob/main/Demo/gateway.gif)
 
@@ -147,7 +148,15 @@ This group of consumers can read the data from mongodb (Batch/offline):
 * [Lipidologist](https://github.com/nadinelabidi/Ehealth-Kafka-Project/blob/main/Kafka_file/lipidologist.py)
 * [Researcher](https://github.com/nadinelabidi/Ehealth-Kafka-Project/blob/main/Kafka_file/researcher.py)
 
-Verify that data is produced correctly:
+### Feature list per topic per consumer : (apart from age and sex)
+
+| Topic     |  research   |  Cardiology          |  Stroke            |  Diabete         |  Dyslipidemia |  vitals               | 
+| :---:     | :-:         | :-:                  | :-:                |       :-:        | :-:           | :-:                   | 
+|  Consumer |  Researcher |  Cardiologist        |  Emergency doctor  |  Endocrinologist |  Lipiodologist|  Nurse                | 
+|  Features | all         | cp,trestbps,restecg, | trestbps,cp,restecg| fbs              | chol          | Temp,trestbps,restecg |
+|           |             | ca,chol,thalach,slope|                    |                  |               |                       |      
+
+#### Verify that data is produced correctly:
 
 To access Confuent Control Center and Visualize the Cluster as well as the architecture created :
 * Topics
@@ -159,16 +168,6 @@ localhost:9021
 Here are the verification its the clusters, its containers and the architecture is well existing:
 ![](https://github.com/nadinelabidi/Ehealth-Kafka-Project/blob/main/Demo/topics.gif)
 
-
-
-
-## Feature list per topic per consumer : (apart from age and sex)
-
-| Topic     |  research   |  Cardiology          |  Stroke            |  Diabete         |  Dyslipidemia |  vitals               | 
-| :---:     | :-:         | :-:                  | :-:                |       :-:        | :-:           | :-:                   | 
-|  Consumer |  Researcher |  Cardiologist        |  Emergency doctor  |  Endocrinologist |  Lipiodologist|  Nurse                | 
-|  Features | all         | cp,trestbps,restecg, | trestbps,cp,restecg| fbs              | chol          | Temp,trestbps,restecg |
-|           |             | ca,chol,thalach,slope|                    |                  |               |                       |      
 
 ## Kafka Connect
 

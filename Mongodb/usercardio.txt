@@ -28,8 +28,9 @@ db.createRole(
      roles: []
    }
 )
-
+----------------------------------------------
 use Ehealth 
+----------------------------------------------
 db.createUser({user: 'Cardiologist',
   pwd: 'cardiologist',
   roles: [

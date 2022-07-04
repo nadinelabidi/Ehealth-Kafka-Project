@@ -12,7 +12,7 @@ This figure  shows an example of an e-health system architecture deployed in a h
 Corporal sensors detect measurments per patient to survey his status (Example : Body temperature, heart beats per sec, blood sugar, etc ..)
 
 In our mini project, we will go a little further in details in terms of system specifications and components necessary to deploy. 
-We will focus on a BigData architecture that respects and deploy a specific solution based on "Batch" treatment.
+We will focus on a BigData architecture that respects and deploys a specific solution based on "Batch" treatment.
 More specifically, we will simulate the gateways with a kafka producer that will create topics where some will be consumed by real-time groups and other will be sent to a mongo Db sink dedicated to "Offline" consumers.
 The architecture we will be applying is the following : 
 

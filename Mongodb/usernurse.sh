@@ -13,7 +13,7 @@ db.createRole(
      roles: []
    }
 )
-
+---------------------------------------------------
 db.createRole(
    {
      role: "patientsReadWrite",
@@ -30,8 +30,9 @@ db.createRole(
    }
 )
 
-
+---------------------------------------------------
 use Ehealth 
+---------------------------------------------------
 db.createUser({user: 'Nurse',
   pwd: 'nurse',
   roles: [

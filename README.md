@@ -138,7 +138,7 @@ python3 Gateway.py
 ```
 python3 emergency_doctors.py
 ```
-![](https://github.com/nadinelabidi/Ehealth-Kafka-Project/blob/main/Demo/emergency_doctor.gif)
+![](https://github.com/nadinelabidi/Ehealth-Kafka-Project/blob/main/Demo/emergency.gif)
 
 ### Consumer Group B  
 This group of consumers can read the data from mongodb (Batch/offline):

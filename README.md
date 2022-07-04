@@ -1,9 +1,9 @@
 # Development and Deployment of an E-Health system
 ## Mini-project context: 
 
-In every E-health system, a multitude of sensors or iOT objects are deployed to collect data that surveys activity , status and environment measurments per patients.
+In every E-health system, a multitude of sensors or iOT devices are deployed to collect data that surveys activity , status and environment measurments for patients.
 The goal is to store data and analyze it in order to automatize decision making and protect the patients lives. 
-These decisions or records may be taken on the spot, real-time, or sent to a BigData system for storage and futur diagnosis and reportings.
+These records may be taken on the spot, real-time, or sent to a BigData system for storage and futur diagnosis or reportings.
 Added to this, in "ALERT" cases , specialized emergency teams need to be notified in real-time.
 
 ![](https://github.com/nadinelabidi/Kafka-Mongo/blob/main/Kafka_file/kafka%20mongo.PNG)

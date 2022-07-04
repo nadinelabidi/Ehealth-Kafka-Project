@@ -41,7 +41,7 @@ L=[]
 
 def function_input(condition,feature,L):
     
-    value=(input(f"enter {feature}"))
+    value=(input(f"enter {feature}: "))
     if  (value in enumerate(condition)) :
         x = value
         L.append(x)

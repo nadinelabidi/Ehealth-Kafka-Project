@@ -20,9 +20,9 @@ The architecture we will be applying is the following :
 
 To keep it simple, we have
 * Kafka cluster (with a Broker and a zookeeper)
-* Producer API: Publish messages to the topics in the Kafka cluster.
-* Consumer API: Consume messages from the topics in the Kafka cluster.
-* Connect API: Directly connect the Kafka cluster the sink system without coding. The system here is our mongoDB NoSQL database.
+* Producer API: Publishes messages to the topics in the Kafka cluster.
+* Consumer API: Consumes messages from the topics in the Kafka cluster.
+* Connect API: Directly connects the Kafka cluster the sink system without coding. The system here is our mongoDB NoSQL database.
 This small tutorial creates a data pipeline from Apache Kafka over MongoDB into Python.
 It focuses on simplicity and can be seen as a baseline for similar projects.
 

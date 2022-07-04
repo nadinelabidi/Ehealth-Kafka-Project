@@ -44,7 +44,6 @@ docker-compose up --build -d
 The build will create the following containers : 
 * Zookeeper
 * Kafka Broker 
-* Kafka 
 * Kafka Connect
     * with [MongoDB Connector](https://www.confluent.io/hub/mongodb/kafka-connect-mongodb)
 * MongoDB 

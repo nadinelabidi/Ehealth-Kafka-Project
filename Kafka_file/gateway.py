@@ -27,9 +27,50 @@ def classification_function(X,model):
     
 ## load model from file
 loaded_model = pickle.load(open("pipefull.pickle.dat", "rb"))
-##upload test dataset (10 lines of patient measurements
-patients_record = pd.read_csv('test.csv')
 
+##upload test dataset (10 lines of patient measurements
+DF = pd.read_csv('test.csv')
+                #------------------------------------------------#
+                
+
+features=['age','sex','cp','trestbps','Temp','chol','fbs','restecge','thalach','exang','oldpeak', 'slope','ca','thal']
+conditions=[[list(range(0,100))],[1,0],[0,1,2,3],[list(range(0,200))],[list(range(0,50))],[list(range(0,350))],[0,1],[0,1,2],[list(range(0,350))],[0,1,2],[list(range(0,20))],[0,1,2,3],[0,1,2,3],[0,1,2,3]]
+L=[]
+
+##input new data 
+
+def function_input(condition,feature,L):
+    
+    value=(input(f"enter {feature}"))
+    if  (value in enumerate(condition)) :
+        x = value
+        L.append(x)
+    else:
+        L=[] 
+    
+    return L
+     
+ch2=input("would you like to input? (y/n) " )  
+if ch2 == "y" :
+   for i in range(len(features)):
+       function_input(conditions[i],features[i],L)
+       
+else:
+     print("ok")
+
+if L==[] : 
+   DF = DF
+else:   
+   DF.loc[len(DF)] = L
+
+
+
+patients_record = DF       
+                
+                
+                #------------------------------------------------#
+##predict label
+                
 classification_function(patients_record,loaded_model)
 
 ## create sub-datasets with specific features per topic
@@ -50,7 +91,7 @@ def function_alert_vitals(topic,df):
             
         else:
             if (row['trestbps'] >140):
-                message={ 'Alert !!! trestbps> 140' : row.to_dict()}
+                message={ 'date': time.ctime(),'Alert !!! trestbps> 140' : row.to_dict()}
                 producer.send(topic, message)
                 time.sleep(2)
                 

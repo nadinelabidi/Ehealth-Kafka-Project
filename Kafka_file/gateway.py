@@ -13,7 +13,7 @@ import time
 ##import necessary modules for kafka producer
 import json
 from kafka import KafkaProducer
-from datetime import datetime
+
 
                #------------------------------------------------#
 producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v:
@@ -45,22 +45,22 @@ def function_alert_vitals(topic,df):
         if (row['restecg'] ==0) :
             message={ 'date': time.ctime(), 'Alert !!! restecg=0' : row.to_dict()}
             producer.send(topic ,message)
-            time.sleep(3)
+            time.sleep(2)
             
             
         else:
             if (row['trestbps'] >140):
                 message={ 'Alert !!! trestbps> 140' : row.to_dict()}
                 producer.send(topic, message)
-                time.sleep(3)
+                time.sleep(2)
                 
                 
 
             else:
                 if (row['Temp'] > 38 ):
-                    message={'Alert !!! Temperature> 38' : row.to_dict()}
+                    message={'date': time.ctime(),'Alert !!! Temperature> 38' : row.to_dict()}
                     producer.send(topic, message)
-                    time.sleep(3)
+                    time.sleep(2)
                     
 
               #------------------------------------------------# 
@@ -69,28 +69,28 @@ def function_alert_vitals(topic,df):
 def function_alert_stroke(topic,df):
     for j,row in df.iterrows():
         if (row['label'] ==1) :
-            message={ 'Alert !!! Cardio patient to survey' : row.to_dict()}
+            message={ 'date': time.ctime(),'Alert !!! Cardio patient to survey' : row.to_dict()}
             producer.send(topic ,message)
-            time.sleep(5)
+            time.sleep(2)
             
 
         else: 
             if (row['restecg'] ==1) or (row['restecg'] ==2):
-                message={ 'Alert stroke/restecg abnormal' : row.to_dict()}
+                message={ 'date': time.ctime(),'Alert stroke/restecg abnormal' : row.to_dict()}
                 producer.send(topic ,message)
-                time.sleep(5)
+                time.sleep(2)
 
             else:
                 if (row['trestbps'] >140):
-                    message={ 'Alert !!! trestbps> 140' : row.to_dict()}
+                    message={ 'date': time.ctime(),'Alert !!! trestbps> 140' : row.to_dict()}
                     producer.send(topic, message)
-                    time.sleep(3)
+                    time.sleep(1)
 
                 else:
                     if (row['cp'] == 0 ):
-                        message={'Alert stroke !!! decrease blood supply' : row.to_dict()}
+                        message={'date': time.ctime(),'Alert stroke !!! decrease blood supply' : row.to_dict()}
                         producer.send(topic, message)
-                        time.sleep(3)
+                        time.sleep(2)
                
 
               #------------------------------------------------#   
@@ -99,9 +99,9 @@ def function_alert_stroke(topic,df):
 def function_cardiology_patients(topic,df):
     for j,row in df.iterrows():
         if (row['label'] == 1):
-            message={ 'measures' : row.to_dict()}
+            message={ 'date': time.ctime(),'measures' : row.to_dict()}
             producer.send(topic, message)
-            time.sleep(3)
+            time.sleep(2)
  
 
              #------------------------------------------------#
@@ -110,9 +110,9 @@ def function_cardiology_patients(topic,df):
 def function_diabetes_patients(topic,df):
     for j,row in df.iterrows():
         if (row['fbs'] == 1):
-            message={ 'measures' : row.to_dict()}
+            message={ 'date': time.ctime(),'measures' : row.to_dict()}
             producer.send(topic, message)
-            time.sleep(3)
+            time.sleep(2)
    
 
              #------------------------------------------------#  
@@ -120,9 +120,9 @@ def function_diabetes_patients(topic,df):
 def function_cholesterol_patients(topic,df):
     for j,row in df.iterrows():
         if (row['chol'] > 200 ):
-            message={ 'measures' : row.to_dict()}
+            message={ 'date': time.ctime(),'measures' : row.to_dict()}
             producer.send(topic, message)
-            time.sleep(3)
+            time.sleep(2)
        
              #------------------------------------------------#  
                 
@@ -131,7 +131,7 @@ def function_Research_stats(topic,df):
     for j,row in df.iterrows():
         message={ 'date': time.ctime(),'measures' : row.to_dict()}
         producer.send(topic, message)
-        time.sleep(3)
+        time.sleep(1)
 
 
              #------------------------------------------------# 
